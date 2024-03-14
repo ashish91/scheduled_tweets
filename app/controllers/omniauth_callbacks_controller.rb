@@ -1,7 +1,6 @@
 class OmniauthCallbacksController < ApplicationController
 
   def twitter
-    return render plain: "Successful"
     Rails.logger.info(auth)
 
     twitter_account = Current.user.twitter_accounts.where(username: auth.info.nickname).
