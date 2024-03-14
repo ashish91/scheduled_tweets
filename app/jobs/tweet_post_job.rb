@@ -13,8 +13,8 @@ class TweetPostJob < ApplicationJob
 
   private
     def within_publish_at?(tweet)
-      beginning_buffer = Time.current - 1.minute
-      end_buffer = Time.current + 1.minute
+      beginning_buffer = Time.current - 5.minutes
+      end_buffer = Time.current + 5.minutes
 
       beginning_buffer <= tweet.publish_at && tweet.publish_at <= end_buffer
     end
