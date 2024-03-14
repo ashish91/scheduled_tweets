@@ -1,0 +1,5 @@
+<h1>Edit Scheduled Tweet</h1>
+
+<%= render partial: "form", locals: { tweet: @tweet, submit_text: 'Submit' } %>
+
+<%= button_to "Delete Tweet", @tweet, method: :delete, data: { confirm: "Are you sure ?"}, class: 'btn btn-outline-danger my-2' %>
