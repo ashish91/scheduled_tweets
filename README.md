@@ -23,7 +23,7 @@ Once a user has signed up they can sign in with the email and password.
 #### Persisting sessions after user sign in
 
 On a successful sign in the user's id is stored in the browser's cookie. After that during each request the browser adds the user id present in session in the header, on the server side the value is picked up from the header and logged in user is initialized.
-On sign out the session variable user's id is deleted. And from thereon the user id is not passed in the header, the server doesn't find the user id in the header and redirects the user to sign in page.
+On sign out the session's users id is deleted. And from thereon the user id is not passed in the header, the server doesn't find the user id in the header and redirects the user to sign in page.
 
 #### What is a Browser Cookie ?
 
@@ -36,7 +36,6 @@ An existing user can use forgot password to change their password. A reset link 
 #### How is token generated for reset link ?
 
 Every model instance in Rails has a [global id](https://github.com/rails/globalid), this can be accessed using `to_global_id` method of the `ActiveRecord` instance. Using this `global id` a signed version is created using the `signed_id` method. This `signed_id` method also contains a `expires_in` attribute, using this we can generate a signed id and use that to get the user instance afterwards using `find_signed`. The `signed_id` becomes invalid after the `expires_in` time and makes the password link also invalid.
-
 
 ## Connect/Disconnect Twitter Accounts
 
