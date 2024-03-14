@@ -8,10 +8,17 @@ class Tweet < ApplicationRecord
   delegate :token, :secret, to: :twitter_account
 
   # after_commit :publish_tweet!
-  # after_initialize :set_default_publish_at
+  after_initialize :set_default_publish_at
 
   def published?
     tweet_id?
+  end
+
+  def publish_tweet_now!
+    tweeting_service = XTweetingService.new(self.token, self.secret)
+    response = tweeting_service.publish_to_twitter!(self)
+
+    tweet.update!(tweet_id: response.tweet_id)
   end
 
   private
@@ -21,10 +28,9 @@ class Tweet < ApplicationRecord
     end
 
     def publish_tweet!
-      binding.irb
       return unless publish_at_previously_changed?
 
-      TweetCreateJob.set(wait_until: self.publish_at).perform_later(self.id)
+      TweetPostJob.set(wait_until: self.publish_at).perform_later(self.id)
     end
 
 end

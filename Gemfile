@@ -22,6 +22,13 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Twitter Omniauth Authentication
+gem "omniauth-twitter", "~> 1.4"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+# Twitter API
+gem "x", "~> 0.14.1"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -55,5 +62,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "omniauth-twitter", "~> 1.4"
-gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "sidekiq", "~> 7.2"

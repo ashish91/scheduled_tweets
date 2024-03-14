@@ -79,6 +79,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     erubi (1.12.0)
@@ -185,6 +186,8 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis-client (0.21.0)
+      connection_pool
     regexp_parser (2.9.0)
     rexml (3.2.6)
     rubyzip (2.3.2)
@@ -203,6 +206,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    sidekiq (7.2.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.19.0)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -242,6 +250,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    x (0.14.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.13)
@@ -263,6 +272,7 @@ DEPENDENCIES
   rails (~> 6.1.7, >= 6.1.7.7)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
+  sidekiq (~> 7.2)
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
@@ -270,6 +280,7 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  x (~> 0.14.1)
 
 RUBY VERSION
    ruby 3.2.3p157
