@@ -7,7 +7,7 @@ class Tweet < ApplicationRecord
 
   delegate :token, :secret, to: :twitter_account
 
-  # after_commit :publish_tweet!
+  after_commit :publish_tweet!
   after_initialize :set_default_publish_at
 
   def published?
