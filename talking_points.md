@@ -40,13 +40,40 @@ First we'll click on Log In, now here we'll input the email and password we used
 
 Once we click Sign In we should be logged in, that'll create a session for our user. So let's try that and we're Logged in Successfully.
 
-Now interesting thing to note here is that our session is stored in a browser cookie. Let me show you by going to the browser's inspection tool -> Application and Cookies. Under localhost we can see `_scheduled_tweet_session` which is created by our Rails app and can be accessed in our application using the `session` method.
 
-Let's look at the `sessions_controller` to check how we use the `session` method. As we can see here we're storing the user id in our session cookie in the line `session[:user_id] = user.id`. Once we store user id in the cookie, the browser sends it with each request. Then we fetch it using `session[:user_id]`, initialize the user from our database and use it in subsequent requests. This how if persist users across requests.
 
-So what happens if we log out ? Once we hit the log out button the user id value is deleted from the session cookie. So in subsequent requests the `user id` is not sent anymore.
+Now interesting thing is how is our session persisted ?
 
-Let's check what happens when we go to Twitter Accounts. It redirects us back to Sign In page. In the background what happens is that we try to find `user id` in cookie header but it's not there anymore, so we redirect the user back to Sign In page.
+So how we're doing that is by storing the user id in the browser cookie.
+
+Lets check by going to the browser's inspection tool -> Application and Cookies.
+
+Under localhost we can see `_scheduled_tweet_session` which is created by our Rails app and can be accessed in our application using the `session` method.
+
+Let's look at the `sessions_controller` to check how we use the `session` method.
+
+As we can see here we're storing the user id in our session cookie in the line `session[:user_id] = user.id`.
+
+Once we store user id in the cookie, the browser sends it with each request.
+
+Then we fetch it using `session[:user_id]`, initialize the user from our database and use it in subsequent requests.
+
+This how users are persisted across requests.
+
+
+
+So what happens if we log out ?
+
+When log out the user id value is deleted from the `session` cookie. So the subsequent requests will not have the `user id` anymore.
+
+
+Let's check what happens when we go to Twitter Accounts.
+
+It redirects us back to Sign In page.
+
+In the background what happens is that we try to find `user id` in cookie header but it's not there anymore, so we redirect the user back to Sign In page.
+
+
 
 If we log back in it'll again set the userid in our `session` and we'll be logged in.
 
