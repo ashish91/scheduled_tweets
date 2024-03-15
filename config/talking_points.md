@@ -48,51 +48,72 @@ Let's check how Forget password works in the next video
 
 ## Forgot Password
 
+Hey guys, In this video we're going to go through forgot password flow.
 
+So lets go to login, then click Forgot password. Now here we will type in our email and hit Reset Password.
 
+This will generate a reset link and mail to our email. If we check out our rails log we can see the reset link there.
 
+Here is the reset link => http://localhost:3000/password/reset/edit?token=eyJfcmFpbHMiOnsibWVzc2FnZSI6Ik1RPT0iLCJleHAiOiIyMDI0LTAzLTE1VDA0OjI0OjI3LjYyMVoiLCJwdXIiOiJ1c2VyL3Bhc3N3b3JkX3Jlc2V0In19--e5738b3e4cb56cfee2bad4a30d507b06f05787e37796ac8a6e414a1628e390cc
 
+Let's open that. We're landed to the password reset page, so let's type in our new password.
 
+Ok password was updated successfully. Let's sign in with our new password. Ok great our new password works.
 
+Now let's talk about how the password reset is generated. If we go to `password_mailer` we can see that it generates a `token` using `signed_id` method. In the password mailer's view we can see the link being generated which adds the `token` in the param.
 
+This `token` is used to find the user afterwards when we go to the password reset link. If we open `password_resets_controller` in the edit action we can see the user is grabbed by using the `find_signed!` method.
 
+Now what is this `find_signed!` and `signed_id` method. So Rails has a global id associated with each model instance, let's go to console and check it out for our user using the `to_global_id`.
 
+This global id is used in `signed_id` method to generated an encrypted version of it. This is done so that nobody read your global id. Then `find_signed!` method uses this `signed_id` to get the user. `signed_id` also accepts a `expires_in` parameter which invalidates the token after the mentioned time, rendering the reset link invalid.
 
-
-
-
-
-
-
-
-
-
-
-
-An existing user can use forgot password to change their password. A reset link is generated which can be used to update the password. The reset link contains a token which expires in 15 mins rendering the link invalid after the expiration time.
-
-#### How is token generated for reset link ?
-
-Every model instance in Rails has a [global id](https://github.com/rails/globalid), this can be accessed using `to_global_id` method of the `ActiveRecord` instance. Using this `global id` a signed version is created using the `signed_id` method. This `signed_id` method also contains a `expires_in` attribute, using this we can generate a signed id and use that to get the user instance afterwards using `find_signed`. The `signed_id` becomes invalid after the `expires_in` time and makes the password link also invalid.
+That's all for Forgot password. In the next video we'll look at how to connect and disconnect our twitter accounts.
 
 ## Connect/Disconnect Twitter Accounts
 
-A user can connect multiple twitter accounts to post tweets to those accounts. The connected twitter accounts also can be disconnected afterwards.
+Hey guys, In this video we'll connect our twitter account. So let's go to Twitter Accounts.
 
-#### Using 3-legged OAuth for authenticating users on Twitter
+Click on Connect Twitter Account button. This will initiate a 3-legged OAuth.
 
-On connecting a Twitter Account, the Rails app uses Omniauth to authorize a twitter application. This is done using 3-legged OAuth. In 3-legged OAuth following things happen:
+Basically we're doing a post request to Rails app which in turn redirects us to the Twitter auth callback url with our api key and secret, and then Twitter uses those key and secret to authorize us and sends back an access token and access secret back to our Rails app.
 
-- A post request is made to the Rails app on `/auth/twitter` url.
-- The Rails app then redirects to the Twitter app with the `api_key` and `api_secret` associated to your Twitter Account's developer app.
-- Twitter authorizes your Twitter Account's developer app using the `api_key` and `api_secret`, if authorized it redirects back to the Rails app with a `token` and `secret`.
+Ok so let's click that and see it live. Ok it Successfully connected our account.
 
-This `token` and `secret` is used to authenticate your account afterwards to post tweets on your Twitter account.
+Let's check out our account in Twitter accounts. Great, so our twitter account is linked and if I click on it, it takes to my twitter page.
+
+We can also disconnect our account by clicking this Disconnect button. But before that let's check out the access token and access secret which Twitter sent back.
+
+We'll go to the Rails console and check out our user's newly created twitter account. Ok, we can see our twitter account and we can also see the token and secret with it which obviously filtered.
+
+This token and secret is used afterwards when our Rails app publishes tweets to our twitter account.
+
+Let's now disconnect this account to see what happens. Ok, it Successfully disconnected my account. Let's check the twitter accounts for our user now. So there you go it's been deleted.
+
+In the next video we'll see how to create tweets and how to publishes to our twitter account. For that I'll reconnect our account.
+
+
 
 ## Create/Edit Tweets
 
-A user can create a tweet, for doing so user must provide the body of the tweet, the time at which the tweet should be published and the twitter account to which the tweet needs to be published has to be selected.
+Hey guys, in this video we're going to create tweets and publish them in our twitter account.
 
-#### Publishing tweets on Twitter using background jobs
+Let's click the Schedule a tweet button. Here we can select a twitter account where it should be published, the tweet body and the time at which this should be scheduled.
 
-Once a tweet is created, it's scheduled to be published on Twitter using a background job running on Sidekiq. Tweets are allowed to be edited before the scheduled time where the user can change the body of the tweet and publish_at time/date.
+So let's create a test tweet. The date will be tomorrow same time. This created our tweet which is scheduled to be published tomorrow. We can also see on which account this will be published by clicking on the icon link.
+
+We can edit the tweet before its scheduled time. Let's do that by clicking Edit Tweet and here we can change the body and the scheduled time. So let's change the body and the scheduled time.
+
+So we can see now our updated tweet with new scheduled time. We can also delete this tweet by going to Edit Tweet and clicking on this Delete Tweet button. Now we cannot see it anymore as it's deleted.
+
+Lets schedule a tweet to be published in the next 2 minutes so we can see it being published on our twitter account.
+
+Now this will get published to our account around 10:11.
+
+Ok let's go to our twitter account and here we can see our tweet published. The publishing of tweet is done using Sidekiq which is used for background processing.
+
+That's all.
+
+Thank you for watching this.
+
+Have a nice day.
