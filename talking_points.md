@@ -15,9 +15,15 @@ Once we click on Sign up it should create a user for us with the email id - your
 
 Ok it's Successfully created my account. Let's go to Rails console to check the new user.
 
-**Type in User.last**
+Type in User.last
 
-So it has indeed created my account using - my email -. We can also see that it saved the password digest and not the password we typed in. Here we're using a feature in Rails called `has_secure_password` which uses a hashing algorithm called `bcrypt` to hash the password we entered and save the digest outputed by it. This is done so that nobody can read the actual password we provided.
+This is the newly create user with - my email -.
+
+We can also see that it saved the password digest and not the password we typed in.
+
+Here we're using a feature in Rails called `has_secure_password` which uses a hashing algorithm called `bcrypt` to hash the password we entered and save the digest outputed by it.
+
+This is done so that nobody can read the actual password we provided.
 
 Afterwards when we're signing it uses the same `bcrypt` hashing algorithm to hash the password input and matches it to what is saved in the database. If it matches it signs in the user.
 
