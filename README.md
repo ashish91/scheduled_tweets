@@ -64,7 +64,7 @@ This `token` and `secret` is used to authenticate your account afterwards to pos
 
 A user can create a tweet, for doing so user must provide the body of the tweet, the time at which the tweet should be published and the twitter account to which the tweet needs to be published has to be selected.
 
-[Watch the Create/Edit Tweets tutorial here]()
+[Watch the Create/Edit Tweets tutorial here](https://drive.google.com/file/d/135PCNVO3HGCN6-lMW6n_YEJhbVbcNscm/view?usp=drive_link)
 
 #### Publishing tweets on Twitter using background jobs
 
