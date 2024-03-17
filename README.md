@@ -10,6 +10,10 @@ This project uses Omniauth to authenticate user in Twitter. It uses the [twitter
 
 Users can sign up with an email. Email must be unique and valid.
 
+
+https://github.com/ashish91/scheduled_tweets/assets/2291064/b59139b4-d9a4-4921-8c55-9ef9cbc2f94c
+
+
 #### Storing password digest for users
 
 On sign up the user email and password is stored. The password is stored using the [has_secure_password](https://api.rubyonrails.org/v7.1.3/classes/ActiveModel/SecurePassword/ClassMethods.html) feature in Rails. This feature allows two virtual attributes - password and password_confirmation which is inputted by the user. During saving it uses the bcryt hashing function to create a password digest which is then stored in the database. The same bcrypt function is used to produce a digest on sign in and this is then matched with the digest stored in the database.
