@@ -58,7 +58,3 @@ A user can create a tweet, for doing so user must provide the body of the tweet,
 #### Publishing tweets on Twitter using background jobs
 
 Once a tweet is created, it's scheduled to be published on Twitter using a background job running on Sidekiq. Tweets are allowed to be edited before the scheduled time where the user can change the body of the tweet and publish_at time/date.
-
-# To Dos
-
-- Debug Sidekiq time scheduled jobs
