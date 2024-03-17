@@ -10,8 +10,7 @@ This project uses Omniauth to authenticate user in Twitter. It uses the [twitter
 
 Users can sign up with an email. Email must be unique and valid.
 
-
-https://github.com/ashish91/scheduled_tweets/assets/2291064/b59139b4-d9a4-4921-8c55-9ef9cbc2f94c
+[Watch the Sign Up tutorial here](https://drive.google.com/file/d/1JQARXg2Ri1ETB86Vy7WUY6vJkL7ZG4m2/view?usp=drive_link)
 
 
 #### Storing password digest for users
@@ -23,6 +22,8 @@ Storing the digest instead of the password itself prevents exposing user passwor
 ## Sign In/Sign Out
 
 Once a user has signed up they can sign in with the email and password.
+
+[Watch the Sign Up tutorial here](https://drive.google.com/file/d/1rh_zG6kYz92TwOr7s9uU4ANzFE4dBeUL/view?usp=drive_link)
 
 #### Persisting sessions after user sign in
 
@@ -37,6 +38,8 @@ A Browser Cookie, also known as HTTP Cookie, is a small piece of data that a ser
 
 An existing user can use forgot password to change their password. A reset link is generated which can be used to update the password. The reset link contains a token which expires in 15 mins rendering the link invalid after the expiration time.
 
+[Watch the Forgot Password tutorial here](https://drive.google.com/file/d/1JqvqhLTVOVNXug06VvCAWXX4GYw0PmgC/view?usp=drive_link)
+
 #### How is token generated for reset link ?
 
 Every model instance in Rails has a [global id](https://github.com/rails/globalid), this can be accessed using `to_global_id` method of the `ActiveRecord` instance. Using this `global id` a signed version is created using the `signed_id` method. This `signed_id` method also contains a `expires_in` attribute, using this we can generate a signed id and use that to get the user instance afterwards using `find_signed`. The `signed_id` becomes invalid after the `expires_in` time and makes the password link also invalid.
@@ -44,6 +47,8 @@ Every model instance in Rails has a [global id](https://github.com/rails/globali
 ## Connect/Disconnect Twitter Accounts
 
 A user can connect multiple twitter accounts to post tweets to those accounts. The connected twitter accounts also can be disconnected afterwards.
+
+[Watch the Connect/Disconnect Twitter Accounts tutorial here](https://drive.google.com/file/d/1Sf8jovgsDUFh2SVpSd9rluWzYU8H6Ziw/view?usp=drive_link)
 
 #### Using 3-legged OAuth for authenticating users on Twitter
 
@@ -58,6 +63,8 @@ This `token` and `secret` is used to authenticate your account afterwards to pos
 ## Create/Edit Tweets
 
 A user can create a tweet, for doing so user must provide the body of the tweet, the time at which the tweet should be published and the twitter account to which the tweet needs to be published has to be selected.
+
+[Watch the Create/Edit Tweets tutorial here]()
 
 #### Publishing tweets on Twitter using background jobs
 
