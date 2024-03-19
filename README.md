@@ -1,6 +1,6 @@
 # Scheduled Tweets
 
-Scheduled Tweets is a Rails based project which helps users to publish tweets on their twitter accounts. Tweets are scheduled to be published when created. The scheduled time and the tweet content can be edited before the scheduled time.
+Scheduled Tweets is a Rails 6 based project which helps users to publish tweets on their twitter accounts. Tweets are scheduled to be published when created. The scheduled time and the tweet content can be edited before the scheduled time.
 
 This project uses Omniauth to authenticate user in Twitter. It uses the [twitter ruby gem](https://github.com/sferik/x-ruby) to interact with Twitter API.
 
