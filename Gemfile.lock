@@ -281,7 +281,7 @@ DEPENDENCIES
   x (~> 0.14.1)
 
 RUBY VERSION
-   ruby 3.2.3p157
+   ruby 3.2.4p170
 
 BUNDLED WITH
    2.4.19
