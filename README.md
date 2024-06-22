@@ -69,3 +69,17 @@ A user can create a tweet, for doing so user must provide the body of the tweet,
 #### Publishing tweets on Twitter using background jobs
 
 Once a tweet is created, it's scheduled to be published on Twitter using a background job running on Sidekiq. Tweets are allowed to be edited before the scheduled time where the user can change the body of the tweet and publish_at time/date.
+
+## Setting up the app
+
+- Install ruby version 3.2.4
+- Run bundle install
+- Install nvm by following [this](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+- Install node using nvm => `nvm install 18.20.3`
+- Run `npm install` inside the project folder
+
+### Starting the app
+
+- Run rails server => `bundle exec rails s`
+- Run sidekiq => `bundle exec sidekiq`
+- Run webpack => `bin/webpack-dev-server`
